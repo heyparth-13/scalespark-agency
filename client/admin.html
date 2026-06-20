@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | ScaleSpark Agency</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .admin-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 100px 2rem;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .admin-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .admin-tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .admin-tab.active {
+      color: var(--text-primary);
+      border-bottom: 2px solid var(--text-primary);
+    }
+    .admin-panel {
+      display: none;
+    }
+    .admin-panel.active {
+      display: block;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .data-table th, .data-table td {
+      padding: 1rem;
+      border: 1px solid var(--border-light);
+      text-align: left;
+    }
+    .login-box {
+      max-width: 400px;
+      margin: 150px auto;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">Scale<span>Spark.</span></a>
+      <a href="#" id="logoutBtn" class="btn-nav" style="display: none;">Logout</a>
+    </div>
+  </header>
+
+  <div id="app"></div>
+
+  <script>
+    let token = localStorage.getItem('token');
+
+    const renderLogin = () => {
+      document.getElementById('app').innerHTML = `
+        <div class="login-box">
+          <h2 style="margin-bottom: 1.5rem; text-align: center;">Admin Login</h2>
+          <form id="loginForm">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary form-btn">Login</button>
+            <p id="loginError" style="color: red; margin-top: 1rem; text-align: center;"></p>
+          </form>
+        </div>
+      `;
+
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            token = data.token;
+            localStorage.setItem('token', token);
+            renderDashboard();
+          } else {
+            document.getElementById('loginError').textContent = 'Invalid credentials';
+          }
+        } catch (err) {
+          document.getElementById('loginError').textContent = 'Server error';
+        }
+      });
+    };
+
+    const fetchLeads = async () => {
+      try {
+        const res = await fetch('/api/leads', { headers: { 'x-auth-token': token } });
+        const data = await res.json();
+        const tbody = document.getElementById('leadsTableBody');
+        tbody.innerHTML = '';
+        data.forEach(l => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${l.name}</td>
+              <td>${l.email}</td>
+              <td>${l.serviceRequired || 'N/A'}</td>
+              <td>${l.budget}</td>
+              <td>${new Date(l.date).toLocaleDateString()}</td>
+            </tr>
+          `;
+        });
+      } catch (err) { console.error(err); }
+    };
+
+    const fetchReviews = async () => {
+      try {
+        const res = await fetch('/api/reviews', { headers: { 'x-auth-token': token } });
+        const data = await res.json();
+        const tbody = document.getElementById('reviewsTableBody');
+        tbody.innerHTML = '';
+        data.forEach(r => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${r.clientName}</td>
+              <td>${r.businessName}</td>
+              <td>${r.rating}/5</td>
+              <td><button onclick="deleteReview('${r._id}')" style="color: red; background: none; border: none; cursor: pointer;">Delete</button></td>
+            </tr>
+          `;
+        });
+      } catch (err) { console.error(err); }
+    };
+
+    window.deleteReview = async (id) => {
+      if(confirm('Delete review?')) {
+        await fetch('/api/reviews/' + id, { method: 'DELETE', headers: { 'x-auth-token': token } });
+        fetchReviews();
+      }
+    };
+
+    const handleTabs = () => {
+      const tabs = document.querySelectorAll('.admin-tab');
+      const panels = document.querySelectorAll('.admin-panel');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => p.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById(tab.dataset.target).classList.add('active');
+        });
+      });
+    };
+
+    const renderDashboard = () => {
+      document.getElementById('logoutBtn').style.display = 'block';
+      document.getElementById('app').innerHTML = `
+        <div class="admin-container">
+          <div class="admin-header">
+            <h2>Agency Dashboard</h2>
+          </div>
+          
+          <div class="admin-tabs">
+            <div class="admin-tab active" data-target="leadsPanel">Leads</div>
+            <div class="admin-tab" data-target="reviewsPanel">Reviews</div>
+          </div>
+
+          <div id="leadsPanel" class="admin-panel active">
+            <h3>Recent Leads</h3>
+            <table class="data-table">
+              <thead>
+                <tr><th>Name</th><th>Email</th><th>Service</th><th>Budget</th><th>Date</th></tr>
+              </thead>
+              <tbody id="leadsTableBody"></tbody>
+            </table>
+          </div>
+
+          <div id="reviewsPanel" class="admin-panel">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+              <h3>Client Reviews</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr><th>Client</th><th>Business</th><th>Rating</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="reviewsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('token');
+        token = null;
+        document.getElementById('logoutBtn').style.display = 'none';
+        renderLogin();
+      });
+
+      handleTabs();
+      fetchLeads();
+      fetchReviews();
+    };
+
+    if (token) {
+      renderDashboard();
+    } else {
+      renderLogin();
+    }
+  </script>
+</body>
+</html>

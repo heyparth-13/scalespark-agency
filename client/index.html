@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ScaleSpark Agency | Handcrafted Digital Platforms</title>
+  <link rel="stylesheet" href="css/style.css?v=4">
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">Scale<span>Spark.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="magnetic-wrap">
+        <a href="contact.html" class="btn btn-primary magnetic-btn">Start a Project</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content reveal">
+        <span class="meta-text">A Premium Digital Agency</span>
+        <h1 class="huge-text">Crafting Digital<br>Experiences That<br>Command Attention.</h1>
+        <p>We are a boutique studio specializing in bespoke web development, high-conversion marketing, and compelling content creation. We build platforms that don't just look expensive—they generate revenue.</p>
+        
+        <div class="magnetic-wrap" style="margin-right: 1.5rem;">
+          <a href="portfolio.html" class="btn btn-primary magnetic-btn">View Selected Works</a>
+        </div>
+        <div class="magnetic-wrap">
+          <a href="contact.html" class="btn btn-secondary magnetic-btn">Let's Talk</a>
+        </div>
+      </div>
+    </div>
+    <!-- Asymmetric offset image -->
+    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" alt="Agency Studio" class="hero-image-offset reveal view-trigger">
+    
+    <!-- Custom SVG Divider -->
+    <div class="svg-divider">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,0 C480,120 960,120 1440,0 L1440,120 L0,120 Z" fill="#FFFFFF"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Infinite Marquee Section -->
+  <section class="marquee-section">
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>STRATEGY &middot; DESIGN &middot; DEVELOPMENT &middot; MARKETING &middot; BRANDING &middot; GROWTH &middot;</span>
+        <span>STRATEGY &middot; DESIGN &middot; DEVELOPMENT &middot; MARKETING &middot; BRANDING &middot; GROWTH &middot;</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section (About) -->
+  <section style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="offset-layout reveal">
+        <div>
+          <span class="meta-text">Our Philosophy</span>
+          <h2 style="font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1;">We reject templates. Every pixel is intentional.</h2>
+        </div>
+        <div class="overlap-card">
+          <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">In a sea of generic, AI-generated websites, true craftsmanship stands out. We believe that your digital presence should feel as premium and bespoke as the services you offer.</p>
+          <a href="about.html" style="font-weight: 700; border-bottom: 2px solid var(--text-primary); padding-bottom: 4px;">Discover our studio process &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities (Services) -->
+  <section>
+    <div class="container">
+      <span class="meta-text reveal">What We Bring To The Table</span>
+      <h2 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 4rem;" class="reveal">Capabilities.</h2>
+      
+      <div class="capability-list reveal">
+        <div class="capability-item" onclick="location.href='services.html'">
+          <div>
+            <h3>Bespoke Web Development</h3>
+            <div class="capability-tags" style="margin-top: 1rem;">
+              <span>Corporate Sites</span><span>E-Commerce</span><span>Web Apps</span>
+            </div>
+          </div>
+          <div style="font-size: 2rem;">&rarr;</div>
+        </div>
+        <div class="capability-item" onclick="location.href='services.html'">
+          <div>
+            <h3>High-Intent Marketing</h3>
+            <div class="capability-tags" style="margin-top: 1rem;">
+              <span>Meta Ads</span><span>Google Ads</span><span>SEO</span>
+            </div>
+          </div>
+          <div style="font-size: 2rem;">&rarr;</div>
+        </div>
+        <div class="capability-item" onclick="location.href='services.html'">
+          <div>
+            <h3>Content & Storytelling</h3>
+            <div class="capability-tags" style="margin-top: 1rem;">
+              <span>Video Production</span><span>Photography</span><span>Branding</span>
+            </div>
+          </div>
+          <div style="font-size: 2rem;">&rarr;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Preview -->
+  <section style="background: var(--text-primary); color: var(--bg-primary);">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5rem;" class="reveal">
+        <div>
+          <span class="meta-text" style="color: rgba(255,255,255,0.5);">Selected Works</span>
+          <h2 style="font-size: clamp(3rem, 6vw, 5rem); color: var(--bg-primary);">Proof in execution.</h2>
+        </div>
+        <a href="portfolio.html" style="border-bottom: 1px solid var(--bg-primary); padding-bottom: 4px; color: var(--bg-primary);">View entire archive</a>
+      </div>
+
+      <div class="portfolio-masonry" id="portfolioPreviewContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews (Staggered Layout) -->
+  <section style="background: var(--bg-secondary);">
+    <div class="container">
+      <span class="meta-text reveal">Reputation</span>
+      <h2 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 5rem;" class="reveal">What they say.</h2>
+      
+      <div class="reviews-masonry reveal" id="reviewsContainer">
+        <!-- Injected via JS -->
+      </div>
+      
+      <div style="text-align: center; margin-top: 4rem;" class="reveal">
+        <div class="magnetic-wrap">
+          <a href="reviews.html" class="btn btn-secondary magnetic-btn">Read All Testimonials</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <h2 class="footer-huge reveal">Ready to build?</h2>
+      <div style="text-align: center; margin-bottom: 8rem;" class="reveal">
+        <div class="magnetic-wrap">
+          <a href="contact.html" class="btn btn-primary magnetic-btn" style="background: var(--bg-primary); color: var(--text-primary);">Let's discuss your vision</a>
+        </div>
+      </div>
+      
+      <div class="footer-grid-bespoke">
+        <div>
+          <div class="logo footer-logo" style="color: var(--bg-primary);">Scale<span style="color: rgba(255,255,255,0.5);">Spark.</span></div>
+          <p style="color: rgba(255,255,255,0.5); font-size: 1.1rem; max-width: 400px; margin-top: 1rem;">A premium digital agency crafting bespoke platforms that drive measurable growth.</p>
+        </div>
+        <div>
+          <h4>Social</h4>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter</a>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <a href="mailto:hello@scalespark.com">hello@scalespark.com</a>
+          <a href="#">+1 (555) 123-4567</a>
+          <p style="color: rgba(255,255,255,0.5); margin-top: 1rem;">New York, NY</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | ScaleSpark Agency</title>
+  <link rel="stylesheet" href="css/style.css?v=3">
+  <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container navbar">
+      <a href="index.html" class="logo">Scale<span>Spark.</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">Studio</a></li>
+        <li><a href="services.html">Capabilities</a></li>
+        <li><a href="portfolio.html">Work</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="magnetic-wrap">
+        <a href="contact.html" class="btn btn-primary magnetic-btn">Start a Project</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="hero" style="min-height: 100vh;">
+    <div class="container offset-layout reveal">
+      
+      <div style="max-width: 600px;">
+        <span class="meta-text">Inquiries</span>
+        <h1 class="huge-text">Let's build<br>something.</h1>
+        <p style="margin-bottom: 4rem;">We partner with ambitious brands to create digital platforms that dominate. Fill out the form, and a partner will be in touch within 24 hours.</p>
+        
+        <div style="margin-bottom: 2rem;">
+          <h4 style="margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-secondary);">Direct Email</h4>
+          <a href="mailto:hello@scalespark.com" style="font-size: 1.5rem; font-weight: 500;">hello@scalespark.com</a>
+        </div>
+      </div>
+      
+      <div class="form-container-bespoke">
+        <form id="leadForm">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" class="form-control-minimal" required placeholder="Jane Doe">
+          </div>
+          
+          <div class="form-group" style="margin-top: 2rem;">
+            <label>Email Address</label>
+            <input type="email" id="email" class="form-control-minimal" required placeholder="jane@company.com">
+          </div>
+          
+          <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+            <div class="form-group" style="flex: 1;">
+              <label>Phone Number</label>
+              <input type="tel" id="phone" class="form-control-minimal" required placeholder="+1 234 567 890">
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>Business Name</label>
+              <input type="text" id="businessName" class="form-control-minimal" placeholder="Acme Corp">
+            </div>
+          </div>
+          
+          <div style="display: flex; gap: 2rem; margin-top: 2rem;">
+            <div class="form-group" style="flex: 1;">
+              <label>Service Required</label>
+              <select id="serviceRequired" class="form-control-minimal" required>
+                <option value="">Select</option>
+                <option value="Website Development">Web Development</option>
+                <option value="Digital Marketing">Marketing</option>
+                <option value="Content Creation">Content Creation</option>
+                <option value="Full Service">Full Service</option>
+              </select>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>Project Budget</label>
+              <select id="budget" class="form-control-minimal" required>
+                <option value="">Select</option>
+                <option value="Under $5k">Under $5k</option>
+                <option value="$5k - $10k">$5k - $10k</option>
+                <option value="$10k - $25k">$10k - $25k</option>
+                <option value="$25k+">$25k+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 2rem;">
+            <label>Project Details</label>
+            <textarea id="projectDetails" class="form-control-minimal" required placeholder="Tell us about your goals..." style="min-height: 100px; resize: vertical;"></textarea>
+          </div>
+          
+          <div class="magnetic-wrap" style="margin-top: 3rem;">
+            <button type="submit" class="btn btn-primary magnetic-btn">Submit Inquiry</button>
+          </div>
+          <div id="formMessage" style="margin-top: 1.5rem; font-size: 0.9rem;"></div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
